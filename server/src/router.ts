@@ -6,6 +6,7 @@ const router = express.Router();
 // Define Your API Routes Here
 /* ************************************************************************* */
 
+import projectActions from "./controller/projectActions";
 // Define item-related routes
 import itemActions from "./modules/item/itemActions";
 
@@ -14,5 +15,9 @@ router.get("/api/items/:id", itemActions.read);
 router.post("/api/items", itemActions.add);
 
 /* ************************************************************************* */
+
+router.get("/api/el-barto", projectActions.browse);
+
+router.post("/api/el-barto", projectActions.add);
 
 export default router;
