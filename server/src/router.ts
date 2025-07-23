@@ -7,17 +7,13 @@ const router = express.Router();
 /* ************************************************************************* */
 
 import projectActions from "./controller/projectActions";
-// Define item-related routes
-import itemActions from "./modules/item/itemActions";
+import upload from "./middleware/upload";
 
-router.get("/api/items", itemActions.browse);
-router.get("/api/items/:id", itemActions.read);
-router.post("/api/items", itemActions.add);
-
-/* ************************************************************************* */
+/** Project Routes */
 
 router.get("/api/el-barto", projectActions.browse);
-
-router.post("/api/el-barto", projectActions.add);
+router.get("/api/el-barto/:id", projectActions.read);
+router.post("/api/el-barto", upload.single("image"), projectActions.add);
+router.delete("/api/el-barto/:id", projectActions.destroy);
 
 export default router;
