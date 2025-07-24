@@ -1,0 +1,34 @@
+.main-page-content {
+  display: flex;
+  flex-direction: column;
+  gap: 10em;
+  width: 100ch;
+  margin: 0 auto;
+  margin-top: 15em;
+}
+
+.work-link {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+  cursor: pointer;
+}
+
+.arrow {
+  width: 4em;
+  height: 0.14em;
+  background-color: white;
+  position: relative;
+}
+
+.arrow::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  width: 0.5em;
+  height: 0.5em;
+  border-top: 0.14em solid white;
+  border-right: 0.14em solid white;
+  transform: translateY(-50%) rotate(45deg);
+}

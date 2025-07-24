@@ -1,6 +1,9 @@
 import type { RequestHandler } from "express";
 
+import type { ParsedNewProjectType } from "../lib/definitions";
+import { normalizeImagePath } from "../middleware/upload";
 import projectRepository from "../model/projectRepository";
+import stackRepository from "../model/stackRepository";
 
 type ProjectType = {
   id: number;
@@ -34,14 +37,17 @@ const read: RequestHandler = async (req, res) => {
 };
 
 const add: RequestHandler = async (req, res) => {
-  const { stack, ...rest } = req.body as ProjectType;
-  const imagePath = req.file?.path;
+  const { parsedstacks, ...rest } = req.body as ParsedNewProjectType;
+  const imagePath = normalizeImagePath(req.file?.path);
 
   try {
     const insertId: number = await projectRepository.create(
-      rest,
+      rest as ParsedNewProjectType,
       imagePath as string,
     );
+
+    const addStack = await stackRepository.create(parsedstacks, insertId);
+
     res.status(201).json({ id: insertId });
   } catch (error) {
     res.status(401).json({

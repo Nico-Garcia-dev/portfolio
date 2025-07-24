@@ -3,7 +3,7 @@ import multer from "multer";
 const storage = multer.diskStorage({
   destination(req, file, cb) {
     if (file.fieldname === "image") {
-      cb(null, "public/assets/image");
+      cb(null, "public/assets/images");
     } else {
       cb(null, "public/");
     }
