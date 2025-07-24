@@ -28,3 +28,17 @@ CREATE TABLE project_stack (
     FOREIGN KEY (project_id) REFERENCES projects(id),
     FOREIGN KEY (stack_id) REFERENCES stack(id)
 );
+
+
+INSERT INTO stack (name, image_url) VALUES
+("css", "/images/css.png"),
+("express", "/images/express.png"),
+("git", "/images/git.png"),
+("github","/images/github.png"),
+("js", "/images/js.png"),
+("mysql","/images/mysql.png"),
+("node","/images/node.png"),
+("react", "/images/react.png"),
+("ts","/images/ts.png")
+
+

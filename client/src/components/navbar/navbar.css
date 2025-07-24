@@ -1,0 +1,123 @@
+.navbar {
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid white;
+  width: 95%;
+  margin: 0 auto;
+  padding-left: 0em;
+  padding-right: 0em;
+  position: relative;
+}
+
+.logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 1.6em;
+  font-family: var(--logo-font);
+}
+
+.burger-menu {
+  display: none;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 2rem;
+  height: 2rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 10;
+}
+
+.burger-bar {
+  width: 2rem;
+  height: 0.25rem;
+  background: var(--text-color);
+  border-radius: 10px;
+  transition: all 0.3s linear;
+  position: relative;
+  transform-origin: 1px;
+}
+
+.burger-bar.open:nth-child(1) {
+  transform: rotate(45deg);
+}
+
+.burger-bar.open:nth-child(2) {
+  opacity: 0;
+  transform: translateX(20px);
+}
+
+.burger-bar.open:nth-child(3) {
+  transform: rotate(-45deg);
+}
+
+.link-list {
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+  gap: 2em;
+  padding: 0;
+}
+
+.link-list li {
+  margin-right: 20px;
+}
+
+.link-list li:last-child {
+  margin-right: 0;
+}
+
+.link-list a {
+  text-decoration: none;
+  font-weight: bold;
+  font-size: .8em;
+  color: var(--text-color);
+}
+
+@media (max-width: 768px) {
+  .burger-menu {
+    display: flex;
+  }
+
+  .link-list {
+    flex-direction: column;
+    background-color: var(--background-color);
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 100%;
+    max-height: 0;
+    overflow: hidden;
+    gap: 0;
+    transition: max-height 0.3s ease-in-out;
+    z-index: 9;
+    opacity: 0;
+    visibility: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 0 0 5px 5px;
+  }
+
+  .link-list.open {
+    max-height: 300px;
+    opacity: 1;
+    visibility: visible;
+    padding: 1rem 0;
+  }
+
+  .link-list li {
+    margin: 0;
+    width: 100%;
+    text-align: center;
+    padding: 1rem 0;
+  }
+
+  .link-list a {
+    display: block;
+    width: 100%;
+    padding: 0.5rem 0;
+  }
+}
