@@ -1,14 +1,18 @@
 .navbar {
-  padding: 10px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid white;
-  width: 95%;
-  margin: 0 auto;
-  padding-left: 0em;
-  padding-right: 0em;
-  position: relative;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  padding: 1.2em;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(17.8px);
+  -webkit-backdrop-filter: blur(17.8px);
 }
 
 .logo {
