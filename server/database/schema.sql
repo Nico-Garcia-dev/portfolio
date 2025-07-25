@@ -25,7 +25,7 @@ CREATE TABLE project_stack (
     project_id INT,
     stack_id INT,
     PRIMARY KEY (project_id, stack_id),
-    FOREIGN KEY (project_id) REFERENCES projects(id),
+    FOREIGN KEY (project_id) REFERENCES projects(id) ON DELETE CASCADE,
     FOREIGN KEY (stack_id) REFERENCES stack(id)
 );
 

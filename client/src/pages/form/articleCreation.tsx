@@ -76,7 +76,7 @@ export default function ArticleCreation() {
           },
         },
       );
-      setTimeout(() => navigate("/"), 3500);
+      setTimeout(() => navigate("/projects"), 2000);
     } catch (err) {
       console.error(err);
     }

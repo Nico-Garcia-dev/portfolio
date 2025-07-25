@@ -1,5 +1,7 @@
 import "./projectCard.css";
 
+import { useNavigate } from "react-router";
+
 type ProjectType = {
   id: number;
   name: string;
@@ -10,16 +12,24 @@ type ProjectType = {
 };
 
 export default function ProjectCard({ project }: { project: ProjectType }) {
+  const navigate = useNavigate();
   const imgBaseUrl = import.meta.env.VITE_API_URL;
   return (
     <div className="project-card">
       <h3>{project.name}</h3>
       <article className="card-content">
-        <img
-          className="card-image"
-          src={`${imgBaseUrl}${project.image_url}`}
-          alt={`${project.name} thumbnail`}
-        />
+        <button
+          type="button"
+          className="image-container"
+          onClick={() => navigate(`/projects/${project.id}`)}
+          aria-label={`Voir les détails du projet ${project.name}`}
+        >
+          <img
+            className="card-image"
+            src={`${imgBaseUrl}${project.image_url}`}
+            alt={`${project.name} thumbnail`}
+          />
+        </button>
         <div className="card-text">
           <p>{project.description}</p>
           <a
@@ -35,7 +45,11 @@ export default function ProjectCard({ project }: { project: ProjectType }) {
                 <h4>Stack du projet</h4>
                 <ul>
                   {project.stack.map((stack) => (
-                    <img key={stack.id} src={stack.url} alt={stack.name} />
+                    <li key={stack.id}>
+                      <div className="stack-icon">
+                        <img src={stack.url} alt={stack.name} />
+                      </div>
+                    </li>
                   ))}
                 </ul>
               </div>

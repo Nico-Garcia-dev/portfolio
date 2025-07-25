@@ -11,25 +11,22 @@ type ProjectType = {
 
 class ProjectRepository {
   async readAll() {
-    // Une seule requête qui récupère tous les projets et leurs stacks associées
     const [rows] = await DatabaseClient.query<Rows>(
       `SELECT 
         p.id, p.name, p.description, p.github_url, p.image_url, p.created_at,
         s.id AS stack_id, s.name AS stack_name, s.image_url AS stack_url
       FROM 
-        projects p
+        projects as p
       INNER JOIN 
-        project_stack ps ON p.id = ps.project_id
+        project_stack as ps ON p.id = ps.project_id
       INNER JOIN 
-        stack s ON ps.stack_id = s.id
+        stack as s ON ps.stack_id = s.id
       ORDER BY 
         p.id`,
     );
 
-    // Structure pour stocker les projets transformés
     const projectsMap = new Map();
 
-    // Type pour les lignes de résultat
     type ResultRowType = {
       id: number;
       name: string;
@@ -42,10 +39,8 @@ class ProjectRepository {
       stack_url?: string;
     };
 
-    // Parcourir les résultats et regrouper les stacks par projet
     for (const row of rows as ResultRowType[]) {
       if (!projectsMap.has(row.id)) {
-        // Créer une nouvelle entrée de projet
         projectsMap.set(row.id, {
           id: row.id,
           name: row.name,
@@ -57,7 +52,6 @@ class ProjectRepository {
         });
       }
 
-      // Si le projet a une stack associée, l'ajouter au tableau de stacks
       if (row.stack_id) {
         const project = projectsMap.get(row.id);
         project.stack.push({
@@ -68,7 +62,6 @@ class ProjectRepository {
       }
     }
 
-    // Convertir la Map en tableau de projets
     return Array.from(projectsMap.values());
   }
 

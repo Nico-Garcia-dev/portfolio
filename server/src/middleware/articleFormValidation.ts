@@ -18,7 +18,7 @@ const validateProject: RequestHandler = (req, res, next) => {
   const projectSchema = z.object({
     title: z.string().min(2).max(45),
     github_url: z.string().min(2).max(255),
-    description: z.string().min(2).max(500),
+    description: z.string().min(2),
     parsedstacks: z.array(z.string()),
   });
 

@@ -1,8 +1,16 @@
+import { NavLink } from "react-router";
 import "./mainPage.css";
+import { motion } from "framer-motion";
 
 export default function MainPage() {
   return (
-    <section className="main-page-content">
+    <motion.section
+      className="main-page-content"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 2 }}
+    >
       <h1>Bienvenue sur mon portfolio</h1>
       <p>
         Je suis développeur web et mobile, passionné par la création
@@ -17,8 +25,10 @@ export default function MainPage() {
 
       <div className="work-link">
         <div className="arrow" />
-        <span>Mes projets</span>
+        <NavLink className="nav-link" to="/projects">
+          Mes projets
+        </NavLink>
       </div>
-    </section>
+    </motion.section>
   );
 }

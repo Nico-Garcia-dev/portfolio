@@ -9,6 +9,7 @@ import { RouterProvider, createBrowserRouter } from "react-router";
 import App from "./App";
 import ArticleCreation from "./pages/form/articleCreation";
 import MainPage from "./pages/main/mainPage";
+import ProjectById from "./pages/projectById/projectById";
 import ProjectsPage from "./pages/projects/projects";
 
 // Import additional components for new routes
@@ -37,6 +38,10 @@ const router = createBrowserRouter([
       {
         path: "/projects",
         element: <ProjectsPage />,
+      },
+      {
+        path: "/projects/:id",
+        element: <ProjectById />,
       },
     ],
   },
