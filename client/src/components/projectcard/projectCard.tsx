@@ -8,7 +8,7 @@ type ProjectType = {
   description: string;
   github_url: string;
   image_url?: string;
-  stack: { id: number; name: string; url: string }[];
+  stacks: { id: number; name: string; image_url: string }[];
 };
 
 export default function ProjectCard({ project }: { project: ProjectType }) {
@@ -40,14 +40,14 @@ export default function ProjectCard({ project }: { project: ProjectType }) {
             Lien vers le projet sur GitHub
           </a>
           <div className="card-stack">
-            {project.stack && project.stack.length > 0 && (
+            {project.stacks && project.stacks.length > 0 && (
               <div className="project-stack">
                 <h4>Stack du projet</h4>
                 <ul>
-                  {project.stack.map((stack) => (
+                  {project.stacks.map((stack) => (
                     <li key={stack.id}>
                       <div className="stack-icon">
-                        <img src={stack.url} alt={stack.name} />
+                        <img src={stack.image_url} alt={stack.name} />
                       </div>
                     </li>
                   ))}
